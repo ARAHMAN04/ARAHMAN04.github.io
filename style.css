@@ -1,190 +1,99 @@
-/* ============ Base ============ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root{
+  --bg:#0b0e14;
+  --surface:#11151f;
+  --surface-alt:#0f1320;
+  --text:#e6e6e6;
+  --muted:#a0a4ac;
+  --primary:#3b82f6; /* blue-500 */
+  --ring:rgba(59,130,246,.4);
+  --container:1100px;
 }
 
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+  background:linear-gradient(180deg,var(--bg),#0d1224 50%,var(--surface) 100%);
+  color:var(--text);
+  line-height:1.6;
 }
 
-body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background: #fafafa;
+.container{max-width:var(--container);margin-inline:auto;padding:0 1rem}
+
+/* ---------- Header ---------- */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(11,14,20,.7);
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid #1b2030;
+}
+.header-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  height:64px;
+}
+.logo{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; border-radius:12px;
+  background:var(--primary); color:white; font-weight:700; text-decoration:none;
+  letter-spacing:.5px;
+}
+.nav a{
+  color:var(--text); text-decoration:none; margin-left:1rem; font-weight:500;
+}
+.nav a:hover{color:var(--primary)}
+
+/* ---------- Sections ---------- */
+.section{padding:64px 0}
+.section.alt{background:var(--surface-alt)}
+
+.hero{padding:96px 0; text-align:center}
+.hero .accent{color:var(--primary)}
+.hero .cta{margin-top:1rem}
+.hero .social{margin-top:.75rem; color:var(--muted)}
+.hero .social a{color:var(--text); text-decoration:none}
+.hero .social a:hover{color:var(--primary)}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-block; padding:.7rem 1rem; border-radius:12px;
+  background:var(--primary); color:white; text-decoration:none; font-weight:600;
+  border:1px solid transparent; transition: transform .06s ease, box-shadow .2s ease;
+  box-shadow: 0 0 0 0 var(--ring);
+}
+.btn:hover{transform: translateY(-1px); box-shadow: 0 0 0 6px var(--ring)}
+.btn.ghost{background:transparent; color:var(--text); border-color:#2b3245}
+.btn.small{padding:.5rem .8rem; font-size:.95rem}
+
+/* ---------- Skills ---------- */
+.skills{
+  list-style:none; padding:0; margin:1rem 0 0; display:flex; flex-wrap:wrap; gap:.6rem;
+}
+.skills li{
+  padding:.5rem .7rem; border:1px solid #2b3245; border-radius:999px; color:var(--muted);
 }
 
-/* ============ Layout Helpers ============ */
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+/* ---------- Projects Grid ---------- */
+.grid{
+  display:grid; grid-template-columns: repeat(12,1fr); gap:1rem; margin-top:1rem;
+}
+.card{
+  grid-column: span 12;
+  background:var(--surface-alt);
+  border:1px solid #1f2538; border-radius:16px; overflow:hidden;
+}
+.card-body{padding:1rem 1rem 0}
+.card h3{margin:0 0 .25rem}
+.card p{margin:.2rem 0}
+.card .stack{color:var(--muted); font-size:.95rem}
+.card-actions{display:flex; gap:.6rem; padding:1rem}
+
+@media (min-width: 700px){
+  .card{grid-column: span 6;}
+}
+@media (min-width: 1000px){
+  .card{grid-column: span 4;}
 }
 
-.section {
-  padding: 3rem 0;
-}
-
-.section.alt {
-  background: #f0f4f8;
-}
-
-/* ============ Headings ============ */
-h1, h2, h3 {
-  font-weight: 600;
-  color: #222;
-}
-
-h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.75rem;
-}
-
-h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-}
-
-/* ============ Header / Nav ============ */
-.site-header {
-  background: #ffffff;
-  padding: 1rem 0;
-  border-bottom: 1px solid #e5e5e5;
-  text-align: center;
-}
-
-.site-header h1 {
-  font-size: 1.8rem;
-}
-
-nav a {
-  margin: 0 0.8rem;
-  color: #0077cc;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-nav a:hover {
-  color: #005999;
-}
-
-/* ============ Skills ============ */
-.skills {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1rem;
-}
-
-.skills li {
-  background: #e0ecf9;
-  color: #036;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-}
-
-/* ============ Projects Cards ============ */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.card {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  padding: 1rem 1.2rem;
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-}
-
-.card-body p {
-  margin: 0.5rem 0;
-}
-
-.stack {
-  font-size: 0.85rem;
-  color: #666;
-}
-
-/* Buttons inside cards */
-.card-actions .btn {
-  display: inline-block;
-  padding: 0.3rem 0.8rem;
-  margin: 0.3rem 0.2rem;
-  font-size: 0.85rem;
-  text-decoration: none;
-  color: #fff;
-  background: #0077cc;
-  border-radius: 5px;
-  transition: background 0.2s ease;
-}
-
-.card-actions .btn.ghost {
-  background: transparent;
-  border: 1px solid #0077cc;
-  color: #0077cc;
-}
-
-.card-actions .btn:hover {
-  background: #005999;
-  color: #fff;
-}
-
-/* ============ Contact ============ */
-#contact p {
-  text-align: center;
-  margin: 0.4rem 0;
-}
-
-#contact a {
-  color: #0077cc;
-  text-decoration: none;
-}
-
-#contact a:hover {
-  color: #005999;
-}
-
-/* ============ Footer ============ */
-.site-footer {
-  background: #f9f9f9;
-  padding: 1.5rem 0;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #555;
-  border-top: 1px solid #e0e0e0;
-}
-
-.site-footer a {
-  color: #0077cc;
-  margin: 0 0.25rem;
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  color: #005999;
-}
-
-/* ============ Responsive ============ */
-@media (max-width: 600px) {
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.4rem; }
-  .skills { gap: 0.4rem; }
-}
+/* ---------- Footer ---------- */
+.site-footer{padding:32px 0; border-top:1px solid #1b2030; background:#0b0e14}
+.site-footer small{color:var(--muted)}

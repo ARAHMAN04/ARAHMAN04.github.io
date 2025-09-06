@@ -1,589 +1,190 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abdelrahman Hamed | Software Engineer</title>
-  <meta name="description" content="Portfolio of Abdelrahman Ayman — Computer & Communications Engineering student and aspiring software engineer." />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* CSS Variables */
-    :root {
-      --primary: #4a6cf7;
-      --primary-dark: #3a5ad9;
-      --secondary: #6f42c1;
-      --dark: #1d2144;
-      --light: #f8f9fa;
-      --gray: #6c757d;
-      --light-gray: #e9ecef;
-      --success: #28a745;
-      --danger: #dc3545;
-      --border-radius: 8px;
-      --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      --transition: all 0.3s ease;
-    }
-
-    /* Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #fff;
-      scroll-behavior: smooth;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    h1, h2, h3, h4 {
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-
-    p {
-      margin-bottom: 1rem;
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    a:hover {
-      color: var(--primary-dark);
-    }
-
-    .section {
-      padding: 5rem 0;
-    }
-
-    .alt {
-      background-color: var(--light);
-    }
-
-    /* Header */
-    .site-header {
-      background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .nav {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .nav a {
-      color: var(--dark);
-      font-weight: 500;
-    }
-
-    .nav a:hover {
-      color: var(--primary);
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
-      color: white;
-      text-align: center;
-    }
-
-    .hero-inner {
-      max-width: 800px;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .accent {
-      color: #ffcc70;
-    }
-
-    .hero p {
-      font-size: 1.5rem;
-      margin-bottom: 2.5rem;
-      opacity: 0.9;
-    }
-
-    .cta {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.8rem;
-      background: var(--primary);
-      color: white;
-      border: 2px solid var(--primary);
-      border-radius: var(--border-radius);
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .btn:hover {
-      background: var(--primary-dark);
-      border-color: var(--primary-dark);
-      transform: translateY(-3px);
-      box-shadow: var(--box-shadow);
-      color: white;
-    }
-
-    .btn.ghost {
-      background: transparent;
-      color: white;
-      border-color: white;
-    }
-
-    .btn.ghost:hover {
-      background: white;
-      color: var(--primary);
-    }
-
-    .btn.small {
-      padding: 0.5rem 1.2rem;
-      font-size: 0.9rem;
-    }
-
-    .social {
-      margin-top: 2rem;
-    }
-
-    .social a {
-      color: white;
-      font-weight: 500;
-    }
-
-    .social span {
-      margin: 0 0.5rem;
-      opacity: 0.7;
-    }
-
-    /* About Section */
-    #about {
-      padding: 5rem 0;
-    }
-
-    #about h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    #about h2:after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--primary);
-      margin: 0.5rem auto;
-      border-radius: 2px;
-    }
-
-    #about p {
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-      text-align: center;
-    }
-
-    /* Skills Section */
-    #skills {
-      padding: 5rem 0;
-    }
-
-    #skills h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    #skills h2:after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--primary);
-      margin: 0.5rem auto;
-      border-radius: 2px;
-    }
-
-    .skills {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .skills li {
-      background: white;
-      padding: 1.5rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      text-align: center;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-
-    .skills li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Projects Section */
-    #projects {
-      padding: 5rem 0;
-    }
-
-    #projects h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    #projects h2:after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--primary);
-      margin: 0.5rem auto;
-      border-radius: 2px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--box-shadow);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .card-body {
-      padding: 1.5rem;
-      flex-grow: 1;
-    }
-
-    .card h3 {
-      color: var(--dark);
-      margin-bottom: 1rem;
-    }
-
-    .stack {
-      color: var(--gray);
-      font-size: 0.9rem;
-      margin: 1rem 0;
-      font-style: italic;
-    }
-
-    .card-actions {
-      padding: 1rem 1.5rem;
-      background: var(--light-gray);
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    /* Contact Section */
-    #contact {
-      padding: 5rem 0;
-    }
-
-    #contact h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    #contact h2:after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--primary);
-      margin: 0.5rem auto;
-      border-radius: 2px;
-    }
-
-    #contact p {
-      text-align: center;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Footer */
-    .site-footer {
-      background: var(--dark);
-      color: white;
-      padding: 3rem 0;
-      text-align: center;
-    }
-
-    .site-footer a {
-      color: #fff;
-      opacity: 0.8;
-    }
-
-    .site-footer a:hover {
-      opacity: 1;
-      color: var(--primary);
-    }
-
-    .site-footer small {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .header-inner {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      
-      .nav {
-        gap: 1.2rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      
-      .hero p {
-        font-size: 1.2rem;
-      }
-      
-      .cta {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .btn {
-        width: 100%;
-        max-width: 250px;
-        text-align: center;
-      }
-      
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="#">AH</a>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <!-- Hero -->
-    <section id="hero" class="hero">
-      <div class="container hero-inner">
-        <h1>Hi, I'm <span class="accent">Abdelrahman Ayman</span> 👋</h1>
-        <p>Computer & Communications Engineering Student at Alexandria University — Aspiring Software Engineer</p>
-        <div class="cta">
-          <a class="btn" href="#projects">View Projects</a>
-          <a class="btn ghost" href="Abdelrahman_CV.pdf" target="_blank" rel="noopener">Download CV</a>
-        </div>
-        <div class="social">
-          <a href="https://github.com/ARAHMAN04" target="_blank" rel="noopener">GitHub</a>
-          <span>•</span>
-          <a href="https://www.linkedin.com/in/abdelrahman-hamed-359954279/" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2>About Me</h2>
-        <p>
-          I'm a Computer & Communications Engineering student at Alexandria University with a real curiosity for
-          <strong>web development</strong> and <strong>data engineering</strong>.
-          I enjoy creating clean, user-friendly websites and also love working with data — collecting it, organizing it, and
-          finding useful insights. I like experimenting with new tools and turning small ideas into projects I can share.
-        </p>
-         <p>
-          Lately, I've been diving into Python networking projects and sharpening my C++ skills by solving fun programming challenges.
-        </p>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="section alt">
-      <div class="container">
-        <h2>Skills</h2>
-        <ul class="skills">
-         <li>Front-end: HTML, CSS, JavaScript (basics)</li>
-         <li>Back-end: Python (Flask), simple APIs</li>
-         <li>C++ (STL, problem solving)</li>
-         <li>SQL & Basic Data Modeling</li>
-         <li>Git & GitHub</li>
-         <li>Linux / Command Line</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2>Projects</h2>
-
-        <div class="grid">
-          <!-- Web Server & Client -->
-          <article class="card">
-            <div class="card-body">
-              <h3>Multi-threaded Web Server & Client</h3>
-              <p>
-                A lightweight HTTP server and client in Python supporting multi-threaded request handling and basic concurrency control.
-              </p>
-              <p class="stack">Stack: Python, sockets, threading</p>
-            </div>
-            <div class="card-actions">
-              <a class="btn small" href="https://github.com/yourusername/web-server-client" target="_blank" rel="noopener">Source</a>
-            </div>
-          </article>
-
-          <!-- Competitive Programming Utils -->
-          <article class="card">
-            <div class="card-body">
-              <h3>Algorithmic Playground</h3>
-              <p>
-                C++ implementations for arrays, graphs, and DP problems used in contests like ECPC, with clear documentation and modular design.
-              </p>
-              <p class="stack">Stack: C++, STL</p>
-            </div>
-            <div class="card-actions">
-              <a class="btn small" href="https://github.com/yourusername/algorithms" target="_blank" rel="noopener">Source</a>
-            </div>
-          </article>
-
-          <!-- DSP & MATLAB Work -->
-          <article class="card">
-            <div class="card-body">
-              <h3>DSP Lab Notes</h3>
-              <p>
-                Summarized experiments on FFT, filtering, and Z-transforms with ready-to-run MATLAB/Octave scripts.
-              </p>
-              <p class="stack">Stack: MATLAB / Octave</p>
-            </div>
-            <div class="card-actions">
-              <a class="btn small" href="https://github.com/yourusername/dsp-labs" target="_blank" rel="noopener">Source</a>
-            </div>
-          </article>
-
-          <!-- Gym Management System -->
-          <article class="card">
-            <div class="card-body">
-              <h3>Gym Management System</h3>
-              <p>
-                A simple Java-based application to manage members, trainers, classes, and registrations. Supports CRUD operations, file-based persistence, and a clean modular structure.
-              </p>
-              <p class="stack">Stack: Java, OOP</p>
-            </div>
-            <div class="card-actions">
-              <a class="btn small" href="https://github.com/yourusername/gym-system" target="_blank" rel="noopener">Source</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section alt">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>
-          Email:
-          <a href="mailto:arahmanayman04@gmail.com">arahmanayman04@gmail.com</a>
-        </p>
-        <p>
-          Also reachable on
-          <a href="https://www.linkedin.com/in/abdelrahman-hamed-359954279/" target="_blank" rel="noopener">LinkedIn</a>
-          and
-          <a href="https://github.com/ARAHMAN04" target="_blank" rel="noopener">GitHub</a>.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <small>
-        © 2025 Abdelrahman Ayman — Built with
-        <a href="https://developer.mozilla.org/docs/Web/HTML" target="_blank" rel="noopener">HTML</a>
-        &amp;
-        <a href="https://developer.mozilla.org/docs/Web/CSS" target="_blank" rel="noopener">CSS</a>.
-      </small>
-      <br />
-      <small>
-        <a href="mailto:arahmanayman04@gmail.com">Email</a> •
-        <a href="https://www.linkedin.com/in/abdelrahman-hamed-359954279/" target="_blank" rel="noopener">LinkedIn</a> •
-        <a href="https://github.com/ARAHMAN04" target="_blank" rel="noopener">GitHub</a>
-      </small>
-    </div>
-  </footer>
-</body>
-</html>
+/* ============ Base ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fafafa;
+}
+
+/* ============ Layout Helpers ============ */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.section.alt {
+  background: #f0f4f8;
+}
+
+/* ============ Headings ============ */
+h1, h2, h3 {
+  font-weight: 600;
+  color: #222;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ============ Header / Nav ============ */
+.site-header {
+  background: #ffffff;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+.site-header h1 {
+  font-size: 1.8rem;
+}
+
+nav a {
+  margin: 0 0.8rem;
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #005999;
+}
+
+/* ============ Skills ============ */
+.skills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.skills li {
+  background: #e0ecf9;
+  color: #036;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+/* ============ Projects Cards ============ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 1rem 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-body p {
+  margin: 0.5rem 0;
+}
+
+.stack {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Buttons inside cards */
+.card-actions .btn {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  margin: 0.3rem 0.2rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: #fff;
+  background: #0077cc;
+  border-radius: 5px;
+  transition: background 0.2s ease;
+}
+
+.card-actions .btn.ghost {
+  background: transparent;
+  border: 1px solid #0077cc;
+  color: #0077cc;
+}
+
+.card-actions .btn:hover {
+  background: #005999;
+  color: #fff;
+}
+
+/* ============ Contact ============ */
+#contact p {
+  text-align: center;
+  margin: 0.4rem 0;
+}
+
+#contact a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+#contact a:hover {
+  color: #005999;
+}
+
+/* ============ Footer ============ */
+.site-footer {
+  background: #f9f9f9;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555;
+  border-top: 1px solid #e0e0e0;
+}
+
+.site-footer a {
+  color: #0077cc;
+  margin: 0 0.25rem;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #005999;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 600px) {
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.4rem; }
+  .skills { gap: 0.4rem; }
+}
